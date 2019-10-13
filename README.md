@@ -1,4 +1,4 @@
-# Word-Guess-Game
+# Word-Guess-Game : https://dimz13.github.io/Word-Guess-Game/.
 
 # README for Word-Guess-Game
 
