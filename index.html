@@ -6,132 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src ="assets/js/guess.js"></script>
+    <link rel="stylesheet" href ="./assets/css/custom.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Word Guess Game</title>
 </head>
 
 <body>
-    <div class="container-main">
+    <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">Hang Man</h1>
-                <p class="lead">Ready to bet on your words? </p>
-                <!-- <p class="lead">Press any key to play </p> -->
-                <a class="btn btn-primary btn-lg" id="start" href="#" role="button">PLAY</a>
+                <h1 class="display-4" style="text-align:center;color:#ff8c00">WORD GUESS GAME</h1>
+                <p class="lead" style="text-align:center;color:#f5f4ee">ONE WORD BOOK TITLES</p>
+                <p class="lead" style="text-align:center;font-weight:bold; color:#0011ff">Ready to bet on your words?Hit PLAY </p>
+                <div class=button style="text-align:center">
+                <a class="btn btn-primary btn-lg" style ="background-color:rgb(36, 36, 35)" id="start" href="#" role="button">PLAY</a>
+            </div>
             </div>
         </div>
-        <div class="container-fluid">
-
-            <div id="wins">Wins</div>
+            <div class = "container main" style="background-color: rgb(250, 248, 248);height: 500px">
+            <div id="wins">WINS</div>
+            <div id = "current">WORD TO BE GUESSED</div>
             <div id="underscores"></div>
-            <div id="remain"># of guesses remaining</div>
-            <div id="guessed">Letters guessed so far</div>
+            <div id="remain">GUESSES REMAINING</div>
+            <div id="guessed">LETTERS GUESSED</div>
+            <div id="winner"></div>
         </div>
     </div>
 </body>
 <script>
-
-    $(document).ready(function () {
-        var userGuess;
-        var winDom = document.getElementById("wins")
-        var remainDom = document.getElementById("remain")
-        var guessChoicesDom = document.getElementById("guessed")
-        var correctGuessDom = document.getElementById("underscores")
-        var wins = 0;
-        var remain = 20;
-        var guessChoices = []
-        var answerArray = []
-        /**Array of Random words **/
-        var wordList = ["OUTLANDER", "EMMA", "IT", "BEWOULF", "CHOCOLAT", "DIVERGENT", "ECLIPSE", "JAWS", "LOLITA"];
-        var selWord = wordList[Math.floor(Math.random() * wordList.length)]
-        console.log(selWord)
-
-        remainDom.textContent = "Guesses Left: " + remain;
-        winDom.textContent = "Wins: " + wins;
-        var remainingLetter = selWord.length
-
-        function checkGame(userGuess) {
-            for (var j = 0; j < selWord.length; j++) {
-                if (selWord[j] === userGuess) {
-                    remainingLetter--
-                    console.log(remainingLetter)
-                    // remain--
-                    // remainDom.textContent = "# of guesses remaining: " + remain;
-                    answerArray[j] = userGuess
-                    correctGuessDom.textContent = answerArray.join(" ")
-                    guessChoicesDom.textContent = " Letters guessed so far: " + guessChoices.join(", ") + "";
-            remainDom.textContent = "# of guesses remaining: " + remain;
-                    // if (remainingLetter === 0) {
-                    //     wins++
-                    //     winDom.textContent = "Wins: " + wins;
-                    //     remain = 20
-                    //     guessChoicesDom.textContent = " Letters guessed so far : " + "";
-
-                    // }
-
-                }
-                    
-                
-
-            }
-            remain--
-            guessChoices[guessChoices.length] = userGuess;
-            guessChoicesDom.textContent = " Letters guessed so far: " + guessChoices.join(", ") + "";
-            remainDom.textContent = "# of guesses remaining: " + remain;
-
-
-
-        }
-        function reset() {
-            wins = 0;
-            remain = 20;
-            guessChoices = []
-            answerArray = []
-            selWord = wordList[Math.floor(Math.random() * wordList.length)]
-            console.log(selWord)
-            remainingLetter = selWord.length
-        }
-
-
-        function start() {
-            for (var i = 0; i < selWord.length; i++) {
-                answerArray[i] = " _ ";
-                correctGuessDom.textContent = answerArray.join(" ")
-            }
-        }
-        $("#start").click(function () {
-            start();
-        });
-
-        document.onkeyup = function (event) {
-            userGuess = event.key.toUpperCase()
-            console.log(userGuess)
-            if(remain > 0 && remainingLetter > 0){
-                checkGame(userGuess)
-
-            }
-            
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    });
-
-
+ guess();
 </script>
-
 </html>
